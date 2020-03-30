@@ -6,6 +6,8 @@ from fbprophet import Prophet
 from pymongo import MongoClient
 import matplotlib.pyplot as plt # first line
 
+
+
 def _connect_mongo(host, port, username, password, db):
     """ A util for making a connection to mongo """
 
@@ -15,6 +17,7 @@ def _connect_mongo(host, port, username, password, db):
     else:
         conn = MongoClient(host, port)
     return conn[db]
+
 
 def read_mongo(db, collection, query={}, host='localhost', port=27017, username=None, password=None, no_id=True):
     """ Read from Mongo and Store into DataFrame """
@@ -34,6 +37,7 @@ def read_mongo(db, collection, query={}, host='localhost', port=27017, username=
 
     return df
 
+
 #df = pd.read_csv('../examples/example_wp_log_peyton_manning.csv')
 #df.head()
 
@@ -41,18 +45,18 @@ df = read_mongo(db='epsi_iot',collection='lum',query='',host='192.168.0.17')
 df.head()
 m = Prophet()
 m.fit(df)
-future = m.make_future_dataframe(periods=30)
+future = m.make_future_dataframe(periods=5)
 future.tail()
 forecast = m.predict(future)
-m.plot_components(forecast).savefig('/var/www/html/lum.png')
+m.plot_components(forecast).savefig('lum.png')
 
 
 df = read_mongo(db='epsi_iot',collection='temp',query='',host='192.168.0.17')
 df.head()
 m = Prophet()
 m.fit(df)
-future = m.make_future_dataframe(periods=30)
+future = m.make_future_dataframe(periods=5)
 future.tail()
 forecast = m.predict(future)
-m.plot_components(forecast).savefig('/var/www/html/temp.png')
+m.plot_components(forecast).savefig('temp.png')
 

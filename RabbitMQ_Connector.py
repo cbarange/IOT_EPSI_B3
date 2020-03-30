@@ -12,8 +12,3 @@ channel.basic_publish(exchange='', routing_key='firstQueue', body='Hello World!'
 msg = "HelloWorld"
 print(" [x] Sent '"+msg+"'")
 connection.close()
-
-
-
-
-

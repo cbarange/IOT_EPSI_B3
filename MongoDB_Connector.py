@@ -8,15 +8,15 @@ lum = db.lum
 temp = db.temp
 
 post_data = {
-    'ds': '02/04/1970 00h00',
-    'y': 24
+    'ds': '02/04/2000 00h00',
+    'y': 5200
 }
 
 result = temp.insert_one(post_data)
 
 post_data = {
-    'ds': '02/04/1970 00h00',
-    'y': 3
+    'ds': '02/04/2000 00h00',
+    'y': 1200
 }
 result = lum.insert_one(post_data)
 #print('One post: {0}'.format(result.inserted_id))
